@@ -21,10 +21,10 @@ function(lv_bindings)
     set(LV_MPY_METADATA ${LV_OUTPUT}.json)
 
     add_custom_command(
-        OUTPUT 
+        OUTPUT
             ${LV_PP}
         COMMAND
-        ${CMAKE_C_COMPILER} -E -DPYCPARSER ${LV_COMPILE_OPTIONS} ${LV_PP_OPTIONS} "${LV_CFLAGS}" -I ${LV_BINDINGS_DIR}/pycparser/utils/fake_libc_include ${MICROPY_CPP_FLAGS} ${LV_INPUT} > ${LV_PP}
+        ${CMAKE_C_COMPILER} -E -DPYCPARSER ${LV_COMPILE_OPTIONS} ${LV_PP_OPTIONS} "${LV_CFLAGS}" -I ${LV_BINDINGS_DIR}/lvgl/src -I ${LV_BINDINGS_DIR}/pycparser/utils/fake_libc_include ${MICROPY_CPP_FLAGS} ${LV_INPUT} > ${LV_PP}
         DEPENDS
             ${LV_INPUT}
             ${LV_DEPENDS}
@@ -105,7 +105,7 @@ function(all_lv_bindings)
         GEN_OPTIONS
             -M lvgl -MP lv
     )
-        
+
     # ESPIDF bindings
 
     if(ESP_PLATFORM)
